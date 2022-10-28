@@ -8,7 +8,7 @@ Using the Bash Unix Shell navigate to the directory containing keygen.c, enc_ser
 
 To compile the program, enter './compileall' into Bash.
 
-Starts servers by entering into Bash:
+Start servers by entering into Bash:
 
 'enc_server listening_port', where listening_port is the port enc_server listens on
 'dec_server listening_port', where listening_port is the port enc_server listens on
