@@ -10,8 +10,8 @@ To compile the program, enter './compileall' into Bash.
 
 Start servers by entering into Bash:
 
-'enc_server listening_port', where listening_port is the port enc_server listens on
-'dec_server listening_port', where listening_port is the port enc_server listens on
+'enc_server {listening_port}', where listening_port is the port enc_server listens on
+'dec_server {listening_port}', where listening_port is the port enc_server listens on
 
 Example: enc_server 57171 &
 
@@ -19,15 +19,15 @@ Example: enc_server 57171 &
 A key file must be created to be used in the client-server interaciton.
 Enter into Bash:
 
-'keygen keylength > key' where keylength is length of the key and key is the filed outputted to
+'keygen keylength > {key}' where keylength is length of the key and key is the filed outputted to
 
 Example: keygen 256 > mykey
 
 
 Use a client by entering into Bash:
 
-'enc_client plaintext key port' where plaintext is your file to be encrypted, key is your encryption key, and port is the server port to be connected to
-'dec_client cyphertext key port' where ciphertext is your file to be decrypted, key is your encryption key, and port is the server port to be connected to
+'enc_client {plaintext} {key} {port}' where plaintext is your file to be encrypted, key is your encryption key, and port is the server port to be connected to
+'dec_client {cyphertext} {key} {port}' where ciphertext is your file to be decrypted, key is your encryption key, and port is the server port to be connected to
 
 Example:
 'enc_client myplaintext mykey 57171'
