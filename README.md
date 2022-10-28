@@ -19,7 +19,7 @@ Example: enc_server 57171 &
 A key file must be created to be used in the client-server interaciton.
 Enter into Bash:
 
-'keygen keylength > {key}' where keylength is length of the key and key is the filed outputted to
+'keygen {keylength} > {key}' where keylength is length of the key and key is the filed outputted to
 
 Example: keygen 256 > mykey
 
