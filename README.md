@@ -1,6 +1,6 @@
 # encrypt-decrypt
 
-This program will encrypt and decrypt plaintext into ciphertext, using a key, using modulo 27 operations on 
+These C programs will encrypt and decrypt plaintext into ciphertext, using a key, using modulo 27 operations on 
 27 characters that include 26 capital letters and the space character. All 27 characters will be encrypted and decrypted.
 Generated ciphertext can be decrypted through dec_server and dec_client interations. 
 
