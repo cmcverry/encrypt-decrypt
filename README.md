@@ -6,6 +6,8 @@ Generated ciphertext can be decrypted through dec_server and dec_client interati
 
 Using the Bash Unix Shell navigate to the directory containing keygen.c, enc_server.c, enc_client.c, dec_server.c, dec_client.c, and compileall script.
 
+# Instructions
+
 To compile the program, enter './compileall' into Bash.
 
 Start servers by entering into Bash:
