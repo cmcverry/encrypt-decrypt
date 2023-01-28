@@ -1,8 +1,8 @@
 # encrypt-decrypt
 
-These C programs will encrypt and decrypt plaintext into ciphertext, using a key, using modulo 27 operations on 
+These C programs encrypt and decrypt plaintext into ciphertext, using a key, using modulo 27 operations on 
 27 characters that include 26 capital letters and the space character. All 27 characters will be encrypted and decrypted.
-Generated ciphertext can be decrypted through dec_server and dec_client interations. 
+Generated ciphertext can be decrypted through dec_server and dec_client interactions. 
 
 Using the Bash Unix Shell navigate to the directory containing keygen.c, enc_server.c, enc_client.c, dec_server.c, dec_client.c, and compileall script.
 
