@@ -1,37 +1,93 @@
 # encrypt-decrypt
 
-These C programs encrypt and decrypt plaintext into ciphertext, using a key, using modulo 27 operations on 
-27 characters that include 26 capital letters and the space character. All 27 characters will be encrypted and decrypted.
-Generated ciphertext can be decrypted through dec_server and dec_client interactions. 
+This project features plaintext encryption/decryption over C-programmed local server/client pipelines. The server and client interactions happen over a system's local ports. Program execution is done in a command-line interface.
 
-Using the Bash Unix Shell navigate to the directory containing keygen.c, enc_server.c, enc_client.c, dec_server.c, dec_client.c, and compileall script.
+Note: currently only plaintext files containing only upper-case alphabetical letters and spaces are supported for encryption and decryption. 
 
-# Instructions
+## Instructions
+Required: a GCC / C Compiler must be installed to compile this program.
 
-To compile the program, enter './compileall' into Bash.
-
-Start servers by entering into Bash:
-
-'enc_server {listening_port}', where listening_port is the port enc_server listens on
-'dec_server {listening_port}', where listening_port is the port enc_server listens on
-
-Example: enc_server 57171 &
+I developed/tested this project using the Bash Unix Shell and my ./compileall is a bash script, so I recommend trying this project within a bash shell. <br />
 
 
-A key file must be created to be used in the client-server interaciton.
-Enter into Bash:
+### Setup
 
-'keygen {keylength} > {key}' where keylength is length of the key and key is the filed outputted to
+Navigate to the directory containing keygen.c, enc_server.c, enc_client.c, dec_server.c, dec_client.c, and compileall script.
+To compile the program, enter ```./compileall``` into bash. <br />
+Alternatively, to compile without using the bash script execute:
+```
+gcc -std=gnu99 -o enc_server enc_server.c
+gcc -std=gnu99 -o enc_client enc_client.c
+gcc -std=gnu99 -o dec_server dec_server.c
+gcc -std=gnu99 -o dec_client dec_client.c
+gcc -std=gnu99 -o keygen keygen.c
+```
 
-Example: keygen 256 > mykey
+Start the encryption and decryption servers by executing:
 
+```./enc_server {listening_port} &``` where listening_port is the port enc_server listens on <br />
+```./dec_server {listening_port} &``` where listening_port is the port dec_server listens on <br />
 
-Use a client by entering into Bash:
+Your chosen ports must be different between the server programs.
+I recommend choosing random ports anywhere from 10000 - 65000. 
+Keep track of which ports you have chosen. <br />
 
-'enc_client {plaintext} {key} {port}' where plaintext is your file to be encrypted, key is your encryption key, and port is the server port to be connected to
-'dec_client {cyphertext} {key} {port}' where ciphertext is your file to be decrypted, key is your encryption key, and port is the server port to be connected to
+Example: 
+```
+./enc_server 57171 & 
+./dec_server 19823 &
+```
 
-Example:
-'enc_client myplaintext mykey 57171'
-or 'enc_client myplaintext mykey 57171 > myciphertext'
-or 'enc_client myplaintext mykey 57171 > myciphertext &'
+Note: your system's network firewall might block some features of these server programs and you will need to provide permission. On Window's systems you might get a Windows Security Alert popup and you will need to click Allow access.
+
+The encryption and decryption servers should now each be listening on a port and ready to establish local client connections.
+
+<br />Before you can start encrypting and decrypting plaintext. You need to create a randomly generated key. 
+
+Execute: ```./keygen {keylength} > {keyfile}``` where keylength is length of the key and keyfile is the name of file output.
+
+Example: 
+```
+./keygen 256 > mykey
+```
+
+<br />
+
+### Encrypting:
+
+You can now start encrypting and decrypting plaintext files via local port connections.
+<br /> 
+<br />Before continuing:<br />
+Recall the designated ports that the servers are running on. 
+If you have not already, create a plaintext file in the local directory.<br />
+Note: Again, only uppercase alphabetical letters and spaces are supported for encryption/decryption. 
+
+To have your plaintext encrypted and outputted to a file execute: 
+```
+./enc_client {plaintext} {key} {enc_server port} > {ciphertext}
+```
+where plaintext is file whose contents are to be encrypted, key is the file containing your key, enc_server port is the local port where enc_server is running, and ciphertext is an output file which will contain your encrypted plaintext <br />
+<br />
+Alternatively, To have the contents of your plaintext file encrypted and outputted to the command-line execute:
+```
+./enc_client {plaintext} {key} {enc_server port}
+```
+<br />
+
+### Decrypting 
+To decrypt your ciphertext execute:
+```
+./dec_client {cyphertext} {key} {port} > {decipheredtext}
+```
+where ciphertext is your file containing encrypted plaintext, key is the file containing your key, dec_server port is the local port where dec_server is running, and decipheredtext is an output file which will contain your decrypted plaintext 
+
+<br />
+<br />
+Full example using my previous designated ports and naming schemes:
+
+```
+./enc_client myplaintext mykey 57171 > myciphertext
+./dec_client myciphertext mykey 19823 > mydecipheredtext
+```
+
+<br /> At this point, you can compare the contents of your original myplaintext and new mydecipheredtext files. After encrypting and decrypting your original plaintext, myplaintext and mydecipheredtext should have the same contents. Awesome, you have successfully encrypted and decrypted your plaintext using this project.
