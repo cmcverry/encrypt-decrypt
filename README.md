@@ -7,7 +7,7 @@ Note: currently only plaintext files containing only upper-case alphabetical let
 ## Instructions
 Required: a GCC / C Compiler must be installed to compile this program.
 
-I developed/tested this project using the Bash Unix Shell and my ./compileall is a bash script, so I recommend trying this project within a bash shell. <br />
+I developed/tested this project using the Bash Unix Shell and I have a bash script for compiling my code, so I recommend trying this project within a bash shell. <br />
 
 
 ### Setup
