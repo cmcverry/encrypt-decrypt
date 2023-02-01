@@ -19,18 +19,21 @@ void generateKey(int length)
 	for(i;i < length; i++)
 	{
 		// random int values range from 0 - 26
-		int randomNum = rand() % 27;
+		// int randomNum = rand() % 27;
+		int randomNum = rand() % 95;
 
 		// if random value is 26, assigns space character to string at index i
-		if (randomNum == 26)
-		{
-			key[i] = ' ';
-		}
-		// else assigns random uppercase character
-		else
-		{
-			key[i] = 'A' + randomNum;
-		}
+		// if (randomNum == 26)
+		// {
+		// 	key[i] = ' ';
+		// }
+		// // else assigns random uppercase character
+		// else
+		// {
+		// 	key[i] = 'A' + randomNum;
+		// }
+
+		key[i] = ' ' + randomNum;
 	}
 	// Outputs string with new line character to stdout
 	printf("%s\n", key);

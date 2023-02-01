@@ -18,9 +18,9 @@ enc_pid=$!
 ./dec_server "$dec" &
 dec_pid=$!
 
-./keygen $length > key
-./enc_client "$src" key "$enc" > ciphertext
-./dec_client ciphertext key "$dec" > decipheredtext
+./keygen $length > key.txt
+./enc_client "$src" key.txt "$enc" > ciphertext.txt
+./dec_client ciphertext.txt key.txt "$dec" > decipheredtext.txt
 
 kill $enc_pid
 kill $dec_pid

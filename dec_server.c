@@ -188,45 +188,63 @@ int main(int argc, char* argv[]) {
                 }
             }
 
-            // Arithmetic with ASCII char values
-            // Treats space character as having numerical value 0 in encryption calculation
-            // In case a where the ASCII decimal value 64 (@ character) is assigned to bufferText[i], 
-            // reassigns space character to bufferText[i]
+
+            // Decrypts each character in bufferText
+            // Using bufferText char and bufferKey char performs arithmetic and 
+            // modulo 95 operation to calculate new ASCII decimal value for character
+            // Reassigns calculated ASCII character to bufferText[i]
             for (int i = 0; i < strlen(bufferText); i++)
             {
-                // Does nothing if key character is space but text character is not space
-                if (bufferKey[i] == ' ' && bufferText[i] != ' ')
-                {
-                }
-                // Does nothing if key character and plaintext are both space characters
-                else if (bufferText[i] == ' ' && bufferKey[i] == ' ')
-                {
-                }
-                // Decrypts ciphertext via ASCII decimal value arithmetic and modulo 27 
-                else
-                {
-                    // Assigns @ character to ciphertext at index i, if it is a space character
-                    if (bufferText[i] == ' ')
-                    {
-                        bufferText[i] = '@';
-                    }
-                    bufferText[i] = bufferText[i] - 64;
-                    bufferText[i] = bufferText[i] - (bufferKey[i] - 64);
+                char ct = bufferText[i];
+                char kt = bufferKey[i];
+                int t = (int)bufferText[i];
+                int k = (int)bufferKey[i];
+                k = k - 32;
+                t = t - 32; 
+                t = t - k;
 
-                    // If ciphertext character has an ASCII decimal value less than @, add 27 to the character's decimal value;
-                    if (bufferText[i] < '@')
-                    {
-                        bufferText[i] = bufferText[i] + 27;
-                    }
-                    bufferText[i] = bufferText[i] % 27;
-                    bufferText[i] = bufferText[i] + 64;
-                    // @ character is treated as numerical value 0 and changed to space character
-                    if (bufferText[i] == '@')
-                    {
-                        bufferText[i] = ' ';
-                    }
+                if (t < ' ');
+                {
+                    t = t + 95;
                 }
+                t = t % 95;
+                t = t + 32;
+                bufferText[i] = (char)t;
             }
+            // {
+            //     // Does nothing if key character is space but text character is not space
+            //     if (bufferKey[i] == ' ' && bufferText[i] != ' ')
+            //     {
+            //     }
+            //     // Does nothing if key character and plaintext are both space characters
+            //     else if (bufferText[i] == ' ' && bufferKey[i] == ' ')
+            //     {
+            //     }
+            //     // Decrypts ciphertext via ASCII decimal value arithmetic and modulo 27 
+            //     else
+            //     {
+            //         // Assigns @ character to ciphertext at index i, if it is a space character
+            //         if (bufferText[i] == ' ')
+            //         {
+            //             bufferText[i] = '@';
+            //         }
+            //         bufferText[i] = bufferText[i] - 64;
+            //         bufferText[i] = bufferText[i] - (bufferKey[i] - 64);
+
+            //         // If ciphertext character has an ASCII decimal value less than @, add 27 to the character's decimal value;
+            //         if (bufferText[i] < '@')
+            //         {
+            //             bufferText[i] = bufferText[i] + 27;
+            //         }
+            //         bufferText[i] = bufferText[i] % 27;
+            //         bufferText[i] = bufferText[i] + 64;
+            //         // @ character is treated as numerical value 0 and changed to space character
+            //         if (bufferText[i] == '@')
+            //         {
+            //             bufferText[i] = ' ';
+            //         }
+            //     }
+            // }
 
             int countChars = 0;
             // Loops while the number of characters sent to the client is less than the decrypted plaintext

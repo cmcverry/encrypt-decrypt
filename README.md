@@ -1,8 +1,10 @@
 # encrypt-decrypt
 
 This project features plaintext encryption/decryption over C-programmed local server/client pipelines. The server and client interactions happen over a system's local ports. Program execution is done in a command-line interface.
-
-Note: currently only plaintext files containing only upper-case alphabetical letters and spaces are supported for encryption and decryption. 
+<br />
+Encryption/decryption supported for ASCII characters (ASCII decimal values 32 - 126).
+<br />
+Note: The project does not support multi-line plaintext yet (I plan to implement this next).
 
 ## Instructions
 Required: a GCC / C Compiler must be installed to compile this program.
@@ -14,9 +16,9 @@ I have included bash scripts for compiling and executing this project.
 
 Navigate to the directory containing keygen.c, enc_server.c, enc_client.c, dec_server.c, dec_client.c, and bash scripts.
 
-To compile the project, enter ```./compileall``` into bash. <br />
-To execute the project, enter ```./runall -e {encyption server port} -d {decryption server port} -s {your plaintext file}``` <br />
-Example using the sample plaintext file: ```./runall -e 18501 -d 23501 -s plaintext```
+To compile the project, enter ```./compileall.sh``` into bash. <br />
+To execute the project, enter ```./runall.sh -e {encyption server port} -d {decryption server port} -s {your plaintext file}``` <br />
+Example using the sample plaintext file: ```./runall -e 18501 -d 23501 -s plaintext.txt```
 <br />
 
 The script will run the encryption and decryption servers and establish connections with the client programs. As a result, three new plaintext files are 
@@ -62,7 +64,7 @@ Execute: ```./keygen {keylength} > {keyfile}``` where keylength is length of the
 
 Example: 
 ```
-./keygen 256 > mykey
+./keygen 256 > mykey.txt
 ```
 
 <br />
@@ -100,8 +102,8 @@ where ciphertext is your file containing encrypted plaintext, key is the file co
 Full example using my previous designated ports and naming schemes:
 
 ```
-./enc_client myplaintext mykey 57171 > myciphertext
-./dec_client myciphertext mykey 19823 > mydecipheredtext
+./enc_client myplaintext.txt mykey.txt 57171 > myciphertext.txt
+./dec_client myciphertext.txt mykey.txt 19823 > mydecipheredtext.txt
 ```
 
 <br /> At this point, you can compare the contents of your original myplaintext and new mydecipheredtext files. After encrypting and decrypting your original plaintext, myplaintext and mydecipheredtext should have the same contents. Awesome, you have successfully encrypted and decrypted your plaintext using this project.

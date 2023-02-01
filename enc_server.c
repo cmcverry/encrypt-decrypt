@@ -191,39 +191,19 @@ int main(int argc, char* argv[]) {
                 }
             }
 
-            // Arithmetic with ASCII character decimal values
-            // Treats space character as having numerical value 0 in encryption calculation
-            // In case a where the decimal value 64 (@ character) is assigned to bufferText[i], 
-            // reassigns space character to bufferText[i]
+            // Encrypts each character in bufferText
+            // Using bufferText char and bufferKey char performs arithmetic and 
+            // modulo 95 operation to calculate new ASCII decimal value for character
+            // Reassigns calculated ASCII character to bufferText[i]
             for (int i = 0; i < strlen(bufferText); i++)
             {
-                // Does nothing if key character is space but text character is not space
-                if (bufferKey[i] == ' ' && bufferText[i] != ' ')
-                {
-                }
-                // Sets plaintext character to key character at index i, if key character is not a space 
-                // but plaintext character is 
-                else if (bufferKey[i] != ' ' && bufferText[i] == ' ')
-                {
-                    bufferText[i] = bufferKey[i];
-                }
-                // Does nothing if key character and plaintext character  are both space characters
-                else if (bufferText[i] == ' ' && bufferKey[i] == ' ')
-                {
-                }
-                // Encrypts plaintext via ASCII decimal value arithmetic and modulo 27 
-                else
-                {
-                    bufferText[i] = bufferText[i] - 64;
-                    bufferText[i] = bufferText[i] + bufferKey[i] - 64;
-                    bufferText[i] = bufferText[i] % 27;
-                    bufferText[i] = bufferText[i] + 64;
-                    // @ character is treated as numerical value 0 and changed to space character
-                    if (bufferText[i] == '@')
-                    {
-                        bufferText[i] = ' ';
-                    }
-                }
+                int t = (int)bufferText[i];
+                int k = (int)bufferKey[i];
+                t = (t - 32) + (k - 32);
+                t = t % 95;
+                t = t + 32;
+                
+                bufferText[i] = (char)t;
             }
 
             int countChars = 0;

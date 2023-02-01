@@ -33,8 +33,6 @@ void setupAddressStruct(struct sockaddr_in* address,
 }
 
 int main(int argc, char* argv[]) {
-    // goodCharacters string contains all valid characters 
-    char* goodCharacters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int socketFD, portNumber, charsWritten, charsRead;
     struct sockaddr_in serverAddress;
 
@@ -90,54 +88,30 @@ int main(int argc, char* argv[]) {
     // checks for new line character in bufferText and replaces it with null character
     bufferKey[strcspn(bufferKey, "\n")] = '\0';
 
-    // Verifies that only valid characters are in key
-    // For every character in bufferKey, that character is checked
-    // against all characters in goodCharacters
-    // If that bufferKey character is not found in goodCharacters
-    // then bufferKey has invalid character(s)
+    // Verifies that only valid characters are in the key
+    // Only ASCII characters with decimal value ranging from 32 to 126 are valid
     for (int i = 0; i < strlen(bufferKey); i++)
     {
-        // If validChar is not set to 0 in the inner for loop
-        // then that bufferKey[i] is not a valid character
-        int validChar = 1;
-        for (int j = 0; j < strlen(goodCharacters); j++)
+
+        if (((bufferKey[i] - 32) < 0) || ((bufferKey[i] + 0) > 126))
         {
-            if (bufferKey[i] == goodCharacters[j])
-            {
-                validChar = 0;
-            }
-        }
-        if (validChar == 1)
-        {
-            fprintf(stderr, "CLIENT: ERROR Key contains invalid character\n");
+            fprintf(stderr, "CLIENT: ERROR Key contains invalid character %c = %d\n", bufferKey[i], bufferKey[i]);
             exit(1);
         }
     }
 
-    // Verifies that only valid characters are in plaintext
-    // For every character in bufferText, that character is checked
-    // against all characters in goodCharacters
-    // If that bufferText character is not found in goodCharacters
-    // then bufferText has invalid character(s)
+    // Verifies that only valid characters are in the ciphertext
+    // Only ASCII characters with decimal value ranging from 32 to 126 are valid
     for (int i = 0; i < strlen(bufferText); i++)
     {
-        // If validChar is not set to 0 in the inner for loop
-    // then that bufferText[i] is not a valid character
-        int validChar = 1;
-        for (int j = 0; j < strlen(goodCharacters); j++)
+
+        if (((bufferText[i] - 32) < 0) || ((bufferText[i] + 0) > 126))
         {
-            if (bufferText[i] == goodCharacters[j])
-            {
-                validChar = 0;
-            }
-        }
-        if (validChar == 1)
-        {
-            fprintf(stderr, "CLIENT: ERROR plaintext contains invalid character\n");
+            fprintf(stderr, "CLIENT: ERROR plaintext contains invalid character %c = %d\n", bufferText[i], bufferText[i]);
             exit(1);
         }
     }
-
+    
     // Checks that key is not smaller than ciphertext
     if (strlen(bufferKey) < strlen(bufferText))
     {
