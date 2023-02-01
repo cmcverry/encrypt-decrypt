@@ -14,7 +14,13 @@ function getSrcLength {
 length=$(getSrcLength)
 
 ./enc_server "$enc" &
+enc_pid=$!
 ./dec_server "$dec" &
+dec_pid=$!
+
 ./keygen $length > key
 ./enc_client "$src" key "$enc" > ciphertext
 ./dec_client ciphertext key "$dec" > decipheredtext
+
+kill $enc_pid
+kill $dec_pid
