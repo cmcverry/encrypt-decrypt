@@ -9,13 +9,13 @@ Required: a GCC / C Compiler must be installed to compile this program.
 
 I developed/tested this project using bash and included a couple bash scripts, so I recommend compiling and executing this project within a bash shell. <br />
 
-### Bash Scripting
-I've made compiling and executing this project is made very simple with bash scripts.
+## Bash Scripting
+I have included bash scripts for compiling and executing this project.
 
 Navigate to the directory containing keygen.c, enc_server.c, enc_client.c, dec_server.c, dec_client.c, and bash scripts.
 
 To compile the project, enter ```./compileall``` into bash. <br />
-To execute the project, enter ```./runall -e {encyption server port} -d {decryption server port} -s {your plaintext file}```
+To execute the project, enter ```./runall -e {encyption server port} -d {decryption server port} -s {your plaintext file}``` <br />
 Example using the sample plaintext file: ```./runall -e 18501 -d 23501 -s plaintext```
 <br />
 
@@ -25,7 +25,7 @@ generated: key (containing the random key), ciphertext (the encrypted version of
 
 decipheredtext and the original file should contain the same content if the project executed succesfully.
 
-### Manual Compilation and Execution (not recommended)
+## Manual Compilation and Execution (not recommended)
 
 Navigate to the directory containing keygen.c, enc_server.c, enc_client.c, dec_server.c, and dec_client.c.
 To compile enter:
