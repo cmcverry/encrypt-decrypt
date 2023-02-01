@@ -1,0 +1,20 @@
+#!/bin/bash
+
+while getopts "e:d:s:" arg; do
+  case $arg in
+    e) enc=$OPTARG;;
+    d) dec=$OPTARG;;
+    s) src=$OPTARG;;
+  esac
+done
+
+function getSrcLength {
+    echo $(wc -m "$src");
+}
+length=$(getSrcLength)
+
+./enc_server "$enc" &
+./dec_server "$dec" &
+./keygen $length > key
+./enc_client "$src" key "$enc" > ciphertext
+./dec_client ciphertext key "$dec" > decipheredtext
