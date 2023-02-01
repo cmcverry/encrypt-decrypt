@@ -14,7 +14,7 @@ void setupAddressStruct(struct sockaddr_in* address,
     // Clear out the address struct
     memset((char*)address, '\0', sizeof(*address));
 
-    // The address should be network capable
+    // network capable address
     address->sin_family = AF_INET;
     // Store the port number
     address->sin_port = htons(portNumber);
