@@ -1,15 +1,15 @@
 # encrypt-decrypt
 
-This project features plaintext encryption/decryption over C-programmed local server/client pipelines. The server and client interactions happen over a system's local ports. Program execution is done in a command-line interface.
+This project encrypts and decrypts plaintext using C-programmed local servers and clients communicating via local socket connections. Program execution is done in the command-line interface.
 <br />
 Encryption/decryption supported for ASCII characters (ASCII decimal values 32 - 126).
 <br />
-Note: The project does not support multi-line plaintext yet (I plan to implement this next).
+Note: The project does not support multi-line plaintext yet (work in progress).
 
 ## Instructions
 Required: a GCC / C Compiler must be installed to compile this program.
 
-I developed/tested this project using bash and included a couple bash scripts, so I recommend compiling and executing this project within a bash shell. <br />
+I developed/tested this project using bash and my source code features a few bash scripts. I recommend compiling and executing this project within a bash shell. <br />
 
 ## Bash Scripting
 I have included bash scripts for compiling and executing this project.
