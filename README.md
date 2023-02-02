@@ -1,9 +1,9 @@
 # encrypt-decrypt
 
 This project encrypts and decrypts plaintext using C-programmed local servers and clients communicating via local socket connections. Program execution is done in the command-line interface.
-<br />
+
 Encryption/decryption supported for ASCII characters (ASCII decimal values 32 - 126).
-<br />
+
 Note: The project does not support multi-line plaintext yet (work in progress).
 
 ## Instructions
